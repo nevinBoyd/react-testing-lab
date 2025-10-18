@@ -93,3 +93,87 @@ Before we begin coding, let's complete the initial setup for this lesson:
 - The application tests if a new transaction can be added.
 - The application tests if search functionality updates the page correctly.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+# 💰 React Banking Transactions Lab
+
+## 🧩 What I Did
+- Implemented **data fetching** inside `AccountContainer.jsx` using `useEffect()` to load transactions from `http://localhost:6001/transactions`.
+- Built a **POST request handler** to add new transactions dynamically through the API.
+- Created the **AddTransactionForm** component with inputs for date, description, category, and amount, submitting through `FormData` for safe field handling.
+- Added **live search filtering** logic using `.filter()` and `.includes()` to match transactions by description.
+- Implemented a **sort function** to reorder transactions alphabetically by category or description.
+- Updated `TransactionsList` to display `filteredTransactions`, ensuring state updates reactively on search and sort.
+- Wrote a single, complete **Vitest suite** in `App.test.jsx` verifying:
+  - ✅ Transactions display on initial load  
+  - ✅ Search field filters results correctly  
+  - ✅ Form submission adds and displays new transactions  
+
+---
+
+## 🧠 Learned Takeaways
+- Learned how to handle **form submissions** properly in React using `FormData` to safely extract and reset field data.
+- Practiced **state management** for controlled inputs and how to lift state up for global filtering/sorting.
+- Strengthened understanding of **asynchronous behavior** in fetch requests (GET + POST).
+- Learned to **mock API responses** in Vitest using `vi.fn()` for accurate test simulation.
+- Reinforced the difference between **mutating state** and updating it immutably (using spread operators).
+- Improved comfort with **React Testing Library** utilities like `render`, `screen`, `fireEvent`, and `waitFor`.
+
+---
+
+## 🧰 Files Modified / Created
+| File | Purpose |
+|------|----------|
+| `src/components/AccountContainer.jsx` | Core logic: fetch, post, filter, and sort transactions |
+| `src/components/AddTransactionForm.jsx` | Handles user input, uses FormData, posts new transactions |
+| `src/__tests__/App.test.jsx` | Main and only test suite (all features covered) |
+| `src/components/Search.jsx`, `Sort.jsx`, `TransactionsList.jsx` | Supporting display and filter components |
+| ❌ `src/__tests__/test_suites/*` | Removed empty template test files for cleanup |
+
+---
+
+## 🧪 Test Results
+All tests passing successfully after cleanup:
+
+✓ Banking App Core Features > displays transactions on load
+✓ Banking App Core Features > filters transactions by search term
+✓ Banking App Core Features > adds a new transaction when the form is submitted
+
+Test Files 1 passed (1 total)
+Tests 3 passed (3 total)
+
+pgsql
+Copy code
+
+---
+
+##  Build Notes
+- Confirmed all imports/exports properly structured.
+- Ensured correct API endpoint (`http://localhost:6001/transactions`).
+- Integrated `FormData` to eliminate undefined `.value` errors in test runs.
+- Added `filteredTransactions` state logic before render for cleaner search handling.
+- Sorted transactions immutably using the spread operator.
+- Removed unused `test_suites` folder to simplify test directory.
+- Verified successful async test completion via `waitFor()` to simulate real API latency.
+
+---
+
+##  Commit Summary
+| Commit | Description |
+|--------|--------------|
+| 🟢 **Initial setup** | Created base component structure, verified dev server & API connection |
+| 🟢 **Fetch setup** | Added `useEffect` to load transaction data |
+| 🟢 **POST handler** | Implemented add transaction and API post logic |
+| 🟢 **Search & Sort** | Added filter and sort state management |
+| 🟢 **FormData fix** | Switched from `e.target.value` to `FormData` to fix undefined errors |
+| 🟢 **Test cleanup** | Deleted empty test suite files to pass final Vitest run |
+| 🟢 **Final test pass** | All tests pass under `npm run test` |
+
+---
+
+##  Summary Reflection
+This lab tied together everything from previous modules — **fetching, controlled inputs, filtering, sorting, and testing** — into a complete mini React app.  
+After debugging the form handling and simplifying the test structure, all functionality and automated tests passed cleanly.  
+The project now demonstrates a solid understanding of React fundamentals, state flow, and front-end testing workflows.
+
+
